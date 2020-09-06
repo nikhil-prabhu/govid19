@@ -25,4 +25,12 @@ func main() {
 	if err != nil {
 		log.Fatalln(err);
 	}
+
+	// Perform GET request
+	resp, getErr := client.Do(req);
+
+	// Log GET error
+	if getErr != nil {
+		log.Fatalln(getErr);
+	}
 }
