@@ -17,4 +17,12 @@ func main() {
 	client := http.Client{
 		Timeout: time.Second * 10, // Timeout after 10 seconds
 	}
+
+	// Create new request
+	req, err := http.NewRequest(http.MethodGet, apiUrl, nil);
+
+	// Log error
+	if err != nil {
+		log.Fatalln(err);
+	}
 }
