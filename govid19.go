@@ -56,4 +56,34 @@ func main() {
 	var data []map[string]interface{};
 
 	json.Unmarshal(body, &data);
+
+	// Create and display table
+	t := table.NewWriter();
+	t.SetOutputMirror(os.Stdout);
+
+	// Table header
+	t.AppendHeader(table.Row{
+		"Country Code",
+		"Country",
+		"Total Confirmed",
+		"Total Recovered",
+		"Total Deaths",
+	});
+
+	// Append rows to table
+	for _, row := range data {
+		t.AppendRow([]interface{}{
+			row["countryCode"],
+			row["country"],
+			row["totalConfirmed"],
+			row["totalRecovered"],
+			row["totalDeaths"],
+		})
+	}
+
+	// Use bright colored table style
+	t.SetStyle(table.StyleColoredBright);
+
+	// Display table
+	t.Render();
 }
