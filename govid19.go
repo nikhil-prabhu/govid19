@@ -11,5 +11,5 @@ import (
 )
 
 func main() {
-	//pass
+	apiUrl := "https://api.coronatracker.com/v3/stats/worldometer/topCountry"; // API url
 }
