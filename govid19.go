@@ -12,4 +12,9 @@ import (
 
 func main() {
 	apiUrl := "https://api.coronatracker.com/v3/stats/worldometer/topCountry"; // API url
+
+	// Create client
+	client := http.Client{
+		Timeout: time.Second * 10, // Timeout after 10 seconds
+	}
 }
