@@ -5,6 +5,7 @@ import (
 	"log"
 	"time"
 	"flag"
+	"strings"
 	"net/http"
 	"io/ioutil"
 	"encoding/json"
@@ -12,6 +13,12 @@ import (
 )
 
 func main() {
+	// Command line flags
+	var tableStyle = flag.String("style", "ascii", "Specify table style.");
+
+	// Parse command line flags
+	flag.Parse();
+	
 	apiUrl := "https://api.coronatracker.com/v3/stats/worldometer/topCountry"; // API url
 
 	// Create client
@@ -89,8 +96,13 @@ func main() {
 		})
 	}
 
-	// Use bright colored table style
-	t.SetStyle(table.StyleColoredBright);
+	// Table style
+	if strings.ToLower(*tableStyle) == "modern" {
+		// Use bright colored table style
+		t.SetStyle(table.StyleColoredBright);
+	} else if strings.ToLower(*tableStyle) != "ascii" {
+		log.Fatalln("Unknown table style: ", *tableStyle);
+	}
 
 	// Display table
 	t.Render();
