@@ -72,8 +72,15 @@ func main() {
 
 	// Append rows to table
 	for _, row := range data {
+		countryCode := row["countryCode"];
+
+		// Check if country code is nil
+		if countryCode == nil {
+			countryCode = "-";
+		}
+		
 		t.AppendRow([]interface{}{
-			row["countryCode"],
+			countryCode,
 			row["country"],
 			row["totalConfirmed"],
 			row["totalRecovered"],
