@@ -46,4 +46,14 @@ func main() {
 	if readErr != nil {
 		log.Fatalln(readErr);
 	}
+
+	// Parsed JSON data
+	// 
+	// The GET request made to the API url returns an
+	// array of maps. The map keys are strings, whereas
+	// the map values can be either a string or a numeric
+	// value.
+	var data []map[string]interface{};
+
+	json.Unmarshal(body, &data);
 }
