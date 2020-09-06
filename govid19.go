@@ -33,4 +33,17 @@ func main() {
 	if getErr != nil {
 		log.Fatalln(getErr);
 	}
+
+	// Close response body
+	if resp.Body != nil {
+		defer resp.Body.Close();
+	}
+
+	// Read response body
+	body, readErr := ioutil.ReadAll(resp.Body);
+
+	// Log read response body error
+	if readErr != nil {
+		log.Fatalln(readErr);
+	}
 }
